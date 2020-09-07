@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AgileObjects.AgileMapper" Version="1.7.2" />
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Boxed.Mapping" Version="5.0.0" />
+    <PackageReference Include="Mapster" Version="6.5.0" />
+    <PackageReference Include="TinyMapper" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MapperPerformanceCore.Objects\MapperPerformanceCore.Objects.csproj" />
+  </ItemGroup>
+
+</Project>
