@@ -1,7 +1,7 @@
 # MapperPerformance
 
-1) AutoMapper
-2) TinyMapper
-3) AgileMapper
-4) MapsterMapper
-5) BoxedMapping
+	/// 1) https://automapper.org/
+	/// 2) http://tinymapper.net/
+	/// 3) https://github.com/AgileObjects/AgileMapper
+	/// 4) https://github.com/MapsterMapper/Mapster
+	/// 5) https://www.nuget.org/packages/Boxed.Mapping/
