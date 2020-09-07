@@ -26,11 +26,11 @@ namespace MapperPerformanceCore
 
 		private void DoMain(string[] args)
 		{
-			//Console.WriteLine("Test1");
-			//Test1();
-			//Console.WriteLine("");
+			
+			Test1();
+			Console.WriteLine("");
 
-			Console.WriteLine("Test2");
+			
 			Test2();
 
 			// TODO https://rehansaeed.com/a-simple-and-fast-object-mapper/
@@ -48,6 +48,7 @@ namespace MapperPerformanceCore
 			var x = 1000000;
 			h.PopulateCustomers(x);
 
+			Console.WriteLine("Test1 - Number of records " + x);
 			h.DoTest(x);			
 		}
 		
@@ -58,6 +59,7 @@ namespace MapperPerformanceCore
 			var x = 1000000;
 			h.PopulateData(x);
 
+			Console.WriteLine("Test2 - Number of records " + x);
 			h.DoTest(x);
 		}	
 

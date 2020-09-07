@@ -16,16 +16,11 @@ namespace AutoMapperLibrary
 		private AutoMapper.IMapper _mapper;
 		public void CreateMap<T1, T2>()
 		{
-			// AutoMapper(.net framework)
-			//AutoMapper.Mapper.CreateMap<T1, T2>();
-
 			//.net core
 			var configuration = new AutoMapper.MapperConfiguration(cfg =>
 			{
 				cfg.CreateMap<T1, T2>();
 			});
-			// only during development, validate your mappings; remove it before release
-			//configuration.AssertConfigurationIsValid();
 			_mapper = configuration.CreateMapper();
 		}
 

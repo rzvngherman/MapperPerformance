@@ -66,33 +66,29 @@ namespace MapperPerformanceCore
 		{
 			_customMapper.CreateMap<List<Customer>, List<CustomerViewItem>>();
 
-			var watch = new Stopwatch();
+			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(RunMapper), _customMapper.MapperName));
+		}
 
-			//1) automapper:
-			watch.Start();
-			RunMapper(x);
-			watch.Stop();
-			Console.WriteLine(string.Format("{2} with {0} records: (miliseconds) {1}", x, watch.ElapsedMilliseconds, _customMapper.MapperName));
+		private long TimeMethod(Action methodToTime)
+		{
+			Stopwatch stopwatch = new Stopwatch();
+			stopwatch.Start();
+			methodToTime();
+			stopwatch.Stop();
+			return stopwatch.ElapsedMilliseconds;
 		}
 
 		private void DoTheCalculationsForManualMapper(int x)
 		{
-			var watch = new Stopwatch();
-
-			//2) manual mapper
-			watch.Reset();
-			watch.Start();
-			RunManual(x);
-			watch.Stop();
-			Console.WriteLine(string.Format("Manual Map with {0} records: (miliseconds) {1}", x, watch.ElapsedMilliseconds));
+			Console.WriteLine(string.Format("{0} (ms) - Manual Map", TimeMethod(RunManual)));
 		}
 
-		private void RunMapper(int count)
+		private void RunMapper()
 		{
 			var customers = _customMapper.Map<List<Customer>, List<CustomerViewItem>>(_customers);
 		}
 
-		private void RunManual(int count)
+		private void RunManual()
 		{
 			var customers = new List<CustomerViewItem>();
 			foreach (Customer customer in _customers)

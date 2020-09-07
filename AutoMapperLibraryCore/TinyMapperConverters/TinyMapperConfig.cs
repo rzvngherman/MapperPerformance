@@ -15,6 +15,7 @@ namespace AutoMapperLibraryCore.TinyMapperConverters
 			Nelibur.ObjectMapper.TinyMapper.Bind<MapFrom, MapTo>();
 			Nelibur.ObjectMapper.TinyMapper.Bind<List<MapFrom>, List<MapTo>>();
 			Nelibur.ObjectMapper.TinyMapper.Bind<MapperPerformanceCore.Objects.Customer, MapperPerformanceCore.Objects.CustomerViewItem>();
+			Nelibur.ObjectMapper.TinyMapper.Bind<List<MapperPerformanceCore.Objects.Customer>, List<MapperPerformanceCore.Objects.CustomerViewItem>>();
 
 			_mapperName = "TinyMapper";
 		}
@@ -23,7 +24,6 @@ namespace AutoMapperLibraryCore.TinyMapperConverters
 
 		public void CreateMap<T1, T2>()
 		{
-			throw new NotImplementedException();
 		}
 
 		public T2 Map<T1, T2>(T1 customers)
