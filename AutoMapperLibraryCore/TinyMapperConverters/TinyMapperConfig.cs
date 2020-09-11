@@ -22,10 +22,6 @@ namespace AutoMapperLibraryCore.TinyMapperConverters
 
 		public string MapperName => _mapperName;
 
-		public void CreateMap<T1, T2>()
-		{
-		}
-
 		public T2 Map<T1, T2>(T1 customers)
 			where T2 : class
 		{

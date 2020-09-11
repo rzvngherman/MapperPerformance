@@ -1,33 +1,26 @@
 ﻿using MapperPerformanceCore.Objects;
-using Mapster;
 
 namespace AutoMapperLibrary
 {
 	public class CustomAutoMapper : ICustomMapper
 	{
-		private string _mapperName;
 		public CustomAutoMapper()
 		{
-			_mapperName = "AutoMapper";
-		}
+			MapperName = "AutoMapper";
 
-		public string MapperName => _mapperName;
-
-		private AutoMapper.IMapper _mapper;
-		public void CreateMap<T1, T2>()
-		{
-			//.net core
 			var configuration = new AutoMapper.MapperConfiguration(cfg =>
 			{
-				cfg.CreateMap<T1, T2>();
+				cfg.AddProfile(new AutoMapperLibraryCore.AutomapperConverters.AutomapperConfig());
 			});
 			_mapper = configuration.CreateMapper();
 		}
 
+		public string MapperName { get; set; }
+		public AutoMapper.IMapper _mapper;
+
 		public T2 Map<T1, T2>(T1 customers)
 			where T2 : class
 		{
-			// AutoMapper
 			var result = _mapper.Map<T2>(customers);
 			return result;
 		}

@@ -1,4 +1,5 @@
 ﻿using AutoMapperLibrary;
+using AutoMapperLibraryCore;
 using Boxed.Mapping;
 using MapperPerformanceCore.Objects.test2;
 using System;
@@ -16,6 +17,7 @@ namespace MapperPerformanceCore
 		private AutoMapperLibraryCore.TinyMapperConverters.TinyMapperConfig _tinymapper;
 		private AutoMapperLibrary.CustomAgileMapper _agileMapper;
 		private CustomMapsterMapper _mapsterMapper;
+		public List<KeyValuePair<string, long>> _times;
 
 		private List<MapFrom> _mapFrom;
 
@@ -27,6 +29,7 @@ namespace MapperPerformanceCore
 			_tinymapper = TinyMapperConfiguration_CreateMapper();
 			_agileMapper = AgileMapperConfiguration_CreateMapper();
 			_mapsterMapper = MapsterMapperConfiguration_CreateMapper();
+			_times = new List<KeyValuePair<string, long>>();
 		}
 
 		internal void PopulateData(int x)
@@ -34,16 +37,8 @@ namespace MapperPerformanceCore
 			var random = new Random();
 			_mapFrom = new List<MapFrom>();
 			for (var i = 0; i < x; ++i)
-			{
-				var mf = new MapFrom()
-				{
-					Id = i,
-					BooleanFrom = random.NextDouble() > 0.5D,
-					DateTimeOffsetFrom = DateTimeOffset.UtcNow,
-					IntegerFrom = random.Next(),
-					LongFrom = random.Next(),
-					StringFrom = random.Next().ToString(CultureInfo.InvariantCulture),
-				};
+			{				
+				MapFrom mf = HelperMapper.GenerateTestData(i, random);
 				_mapFrom.Add(mf);
 			}
 		}
@@ -84,14 +79,29 @@ namespace MapperPerformanceCore
 
 		internal void DoTest(int x)
 		{
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(Automapper), "Automapper"));
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(Tinymapper), "Tinymapper"));
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(Agilemapper), "Agilemapper"));
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(Mapstermapper), "Mapstermapper"));
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(BoxedMapping), "BoxedMapper"));
-			Console.WriteLine(string.Format("{0} (ms) - Manual Map", TimeMethod(RunManual)));
+			var time = TimeMethod(Automapper);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, "Automapper"));
+			_times.Add(new KeyValuePair<string, long>("Automapper", time));
 
-			Console.WriteLine("");
+			time = TimeMethod(Tinymapper);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, "Tinymapper"));
+			_times.Add(new KeyValuePair<string, long>("Tinymapper", time));
+
+			time = TimeMethod(Agilemapper);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, "Agilemapper"));
+			_times.Add(new KeyValuePair<string, long>("Agilemapper", time));
+
+			time = TimeMethod(Mapstermapper);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, "Mapstermapper"));
+			_times.Add(new KeyValuePair<string, long>("Mapstermapper", time));
+
+			time = TimeMethod(BoxedMapping);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, "BoxedMapper"));
+			_times.Add(new KeyValuePair<string, long>("BoxedMapper", time));
+
+			time = TimeMethod(RunManual);
+			//Console.WriteLine(string.Format("{0} (ms) - Manual Map", time));
+			_times.Add(new KeyValuePair<string, long>("Manual Map", time));
 		}
 
 		private void RunManual()
@@ -99,17 +109,8 @@ namespace MapperPerformanceCore
 			var customers = new List<MapTo>();
 			foreach (var source in _mapFrom)
 			{
-				MapTo customerViewItem = new MapTo()
-				{
-					Id = source.Id,
-					BooleanTo = source.BooleanFrom,
-					DateTimeOffsetTo = source.DateTimeOffsetFrom,
-					IntegerTo = source.IntegerFrom,
-					LongTo = source.LongFrom,
-					StringTo = source.StringFrom
-				};
-
-				customers.Add(customerViewItem);
+				var result = HelperMapper.GetFrom(source);
+				customers.Add(result);
 			}
 		}
 

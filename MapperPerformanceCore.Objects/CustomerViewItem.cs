@@ -8,10 +8,9 @@ namespace MapperPerformanceCore.Objects
 {
 	public class CustomerViewItem
 	{
-		public string FirstName { get; set; }
-		public string LastName { get; set; }
-		public DateTime DateOfBirth { get; set; }
-
-		public int NumberOfOrders { get; set; }
+		public string CustomerViewItemFirstName { get; set; }
+		public string CustomerViewItemLastName { get; set; }
+		public DateTime CustomerViewItemDateOfBirth { get; set; }
+		public int CustomerViewItemNumberOfOrders { get; set; }
 	}
 }

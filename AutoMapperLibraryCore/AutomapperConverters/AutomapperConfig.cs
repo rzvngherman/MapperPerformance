@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MapperPerformanceCore.Objects;
 using MapperPerformanceCore.Objects.test2;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace AutoMapperLibraryCore.AutomapperConverters
 		public AutomapperConfig()
 		{
 			CreateMap<MapFrom, MapTo>().ConvertUsing<MapFromToMapToMapper>();
+			CreateMap<Customer, CustomerViewItem>().ConvertUsing<CustomerToCustomerViewItemMapper>();
 
 			//CreateMap<MapFrom, MapTo>()
 			//	.ForMember(y => y.BooleanTo, y => y.MapFrom(z => z.BooleanFrom))

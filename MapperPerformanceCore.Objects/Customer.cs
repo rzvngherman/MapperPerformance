@@ -11,7 +11,6 @@ namespace MapperPerformanceCore.Objects
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public DateTime DateOfBirth { get; set; }
-
 		public int NumberOfOrders { get; set; }
 	}
 }

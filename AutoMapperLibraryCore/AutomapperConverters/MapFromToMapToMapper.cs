@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MapperPerformanceCore.Objects;
 using MapperPerformanceCore.Objects.test2;
 using System;
 using System.Collections.Generic;
@@ -15,17 +16,29 @@ namespace AutoMapperLibraryCore.AutomapperConverters
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			var result = new MapTo
+			var result = HelperMapper.GetFrom(source);
+			return result;			
+		}
+	}
+
+	public class CustomerToCustomerViewItemMapper : ITypeConverter<Customer, CustomerViewItem>
+	{
+		public CustomerViewItem Convert(Customer source, CustomerViewItem destination, ResolutionContext context)
+		{
+			if (source is null)
 			{
-				Id = source.Id,
-				BooleanTo = source.BooleanFrom,
-				DateTimeOffsetTo = source.DateTimeOffsetFrom,
-				IntegerTo = source.IntegerFrom,
-				LongTo = source.LongFrom,
-				StringTo = source.StringFrom
+				throw new ArgumentNullException(nameof(source));
+			}
+
+			var result = new CustomerViewItem
+			{
+				CustomerViewItemFirstName = source.FirstName,
+				CustomerViewItemLastName = source.LastName,
+				CustomerViewItemDateOfBirth = source.DateOfBirth,
+				CustomerViewItemNumberOfOrders = source.NumberOfOrders,
 			};
 
-			return result;			
+			return result;
 		}
 	}
 }

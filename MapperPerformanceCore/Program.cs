@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace MapperPerformanceCore
 {
@@ -22,16 +23,26 @@ namespace MapperPerformanceCore
 	class Program
 	{
 		private List<Customer> _customers = new List<Customer>();
-		private ICustomMapper _customMapper;
+		private int _nrOfRows = 9000000;
+		private ITestHelper _h;
 
 		private void DoMain(string[] args)
 		{
-			
-			Test1();
+			Console.WriteLine("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "	----------------------------------------------------------------------------------------------------------------");
+			Console.WriteLine("------- BEGIN");
+
+			Console.WriteLine("Number of records " + _nrOfRows);
 			Console.WriteLine("");
 
-			
-			Test2();
+			_h = new Test1Helper();
+			Test1();
+
+			//Console.WriteLine("");
+			//Test2();
+
+			Console.WriteLine("");
+			_h = new Test3Helper();
+			Test1();
 
 			// TODO https://rehansaeed.com/a-simple-and-fast-object-mapper/
 			// TODO https://cezarypiatek.github.io/post/why-i-dont-use-automapper/
@@ -44,24 +55,34 @@ namespace MapperPerformanceCore
 		private void Test1()
 		{
 			//Setup
-			var h = new Test1Helper();
-			var x = 1000000;
-			h.PopulateCustomers(x);
+			_h.PopulateCustomers(_nrOfRows);
+			
+			_h.DoTest(_nrOfRows);
 
-			Console.WriteLine("Test1 - Number of records " + x);
-			h.DoTest(x);			
+			DisplayResult(_h.Times);			
 		}
-		
+
 		private void Test2()
 		{
 			//Setup
 			var h = new Test2Helper();
-			var x = 1000000;
-			h.PopulateData(x);
+			h.PopulateData(_nrOfRows);
 
-			Console.WriteLine("Test2 - Number of records " + x);
-			h.DoTest(x);
-		}	
+			Console.WriteLine("'MapFrom' -> 'MapTo'");
+			h.DoTest(_nrOfRows);
+
+			DisplayResult(h._times);
+		}
+
+		private void DisplayResult(List<KeyValuePair<string, long>> times)
+		{
+			var orderList = times.OrderBy(t => t.Value);
+			foreach (var item in orderList)
+			{
+				Console.Write(item.Key + " " + item.Value + "; ");
+			}
+			Console.WriteLine("");
+		}
 
 		static void Main(string[] args)
 		{

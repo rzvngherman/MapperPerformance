@@ -1,0 +1,128 @@
+﻿Date: 2020-09-11 16:13:01
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 217; Manual Map 569; TinyMapper 657; MapsterMapper 691; BoxedMapper 763; AutoMapper 1636;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 412; TinyMapper 583; MapsterMapper 616; Manual Map 822; BoxedMapper 1004; AutoMapper 1996;
+------- END.
+
+
+
+
+Date: 2020-09-11 16:13:42
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 211; TinyMapper 476; MapsterMapper 576; BoxedMapper 715; Manual Map 872; AutoMapper 1758;
+
+'MapFrom' -> 'MapTo'
+TinyMapper 489; AgileMapper 550; BoxedMapper 698; Manual Map 791; MapsterMapper 852; AutoMapper 2058;
+------- END.
+
+
+
+
+Date: 2020-09-11 16:14:16
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 220; TinyMapper 483; MapsterMapper 573; BoxedMapper 760; Manual Map 860; AutoMapper 1775;
+
+'MapFrom' -> 'MapTo'
+MapsterMapper 501; TinyMapper 592; Manual Map 798; AgileMapper 899; BoxedMapper 966; AutoMapper 2074;
+------- END.
+
+
+
+
+Date: 2020-09-11 16:29:04
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 209; TinyMapper 473; BoxedMapper 700; MapsterMapper 727; Manual Map 732; AutoMapper 1771;
+
+'MapFrom' -> 'MapTo'
+MapsterMapper 253; AgileMapper 423; Manual Map 591; TinyMapper 794; AutoMapper 1713; BoxedMapper 1732;
+------- END.
+
+
+
+Date: 2020-09-11 16:29:36
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 216; TinyMapper 495; BoxedMapper 667; MapsterMapper 712; Manual Map 742; AutoMapper 1761;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 435; Manual Map 499; TinyMapper 531; MapsterMapper 543; BoxedMapper 1252; AutoMapper 2058;
+------- END.
+
+
+
+Date: 2020-09-11 16:30:26
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 213; TinyMapper 463; MapsterMapper 580; BoxedMapper 727; Manual Map 862; AutoMapper 1780;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 446; Manual Map 652; MapsterMapper 689; TinyMapper 782; BoxedMapper 1253; AutoMapper 1523;
+------- END.
+
+
+
+
+Date: 2020-09-11 16:30:50
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 213; TinyMapper 475; BoxedMapper 664; MapsterMapper 730; Manual Map 752; AutoMapper 1802;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 349; MapsterMapper 443; TinyMapper 725; Manual Map 732; BoxedMapper 1543; AutoMapper 1907;
+------- END.
+
+
+
+
+
+
+Date: 2020-09-11 16:32:00
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 212; TinyMapper 473; MapsterMapper 582; BoxedMapper 726; Manual Map 882; AutoMapper 1771;
+
+'MapFrom' -> 'MapTo'
+MapsterMapper 477; TinyMapper 484; AgileMapper 960; Manual Map 1201; BoxedMapper 1490; AutoMapper 2168;
+------- END.
+
+
+
+
+
+Date: 2020-09-11 16:32:42
+------- BEGIN
+Number of records 5000000
+'Customer' -> 'CustomerViewItem'
+AgileMapper 216; TinyMapper 478; MapsterMapper 579; Manual Map 585; BoxedMapper 974; AutoMapper 1787;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 411; TinyMapper 476; MapsterMapper 701; Manual Map 802; BoxedMapper 1575; AutoMapper 1966;
+------- END.
+
+
+
+
+Date: 2020-09-11 16:33:21
+------- BEGIN
+Number of records 5000000
+
+'Customer' -> 'CustomerViewItem'
+AgileMapper 214; Manual Map 573; TinyMapper 652; MapsterMapper 696; BoxedMapper 736; AutoMapper 1643;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 416; TinyMapper 485; Manual Map 766; MapsterMapper 929; BoxedMapper 1351; AutoMapper 2149;
+------- END.

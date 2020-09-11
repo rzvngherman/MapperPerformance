@@ -7,7 +7,14 @@ using MapperPerformanceCore.Objects;
 
 namespace MapperPerformanceCore
 {
-	public class Test1Helper
+	public interface ITestHelper
+	{
+		void PopulateCustomers(int count);
+		void DoTest(int x);
+		List<KeyValuePair<string, long>> Times { get; set; }
+	}
+
+	public class Test1Helper : ITestHelper
 	{
 		private ICustomMapper _customMapper;
 		private List<Customer> _customers;
@@ -15,9 +22,14 @@ namespace MapperPerformanceCore
 		public Test1Helper()
 		{
 			_customers = new List<Customer>();
+			Times = new List<KeyValuePair<string, long>>();
+
+			Console.WriteLine("'Customer' -> 'CustomerViewItem'");
 		}
 
-		internal void PopulateCustomers(int count)
+		public List<KeyValuePair<string, long>> Times { get; set; }
+
+		public void PopulateCustomers(int count)
 		{
 			var results = new List<Customer>();
 			for (int x = 0; x < count; x++)
@@ -38,7 +50,7 @@ namespace MapperPerformanceCore
 			};
 		}
 
-		internal void DoTest(int x)
+		public void DoTest(int x)
 		{
 			_customMapper = new CustomAutoMapper();
 			DoTheCalculationsForMapper(x);
@@ -64,9 +76,10 @@ namespace MapperPerformanceCore
 
 		private void DoTheCalculationsForMapper(int x)
 		{
-			_customMapper.CreateMap<List<Customer>, List<CustomerViewItem>>();
+			var time = TimeMethod(RunMapper);
+			//Console.WriteLine(string.Format("{0} (ms) - {1}", time, _customMapper.MapperName));
 
-			Console.WriteLine(string.Format("{0} (ms) - {1}", TimeMethod(RunMapper), _customMapper.MapperName));
+			Times.Add(new KeyValuePair<string, long>(_customMapper.MapperName, time));
 		}
 
 		private long TimeMethod(Action methodToTime)
@@ -80,7 +93,9 @@ namespace MapperPerformanceCore
 
 		private void DoTheCalculationsForManualMapper(int x)
 		{
-			Console.WriteLine(string.Format("{0} (ms) - Manual Map", TimeMethod(RunManual)));
+			var time = TimeMethod(RunManual);
+			//Console.WriteLine(string.Format("{0} (ms) - Manual Map", time));
+			Times.Add(new KeyValuePair<string, long>("Manual Map", time));
 		}
 
 		private void RunMapper()
@@ -95,10 +110,10 @@ namespace MapperPerformanceCore
 			{
 				CustomerViewItem customerViewItem = new CustomerViewItem()
 				{
-					FirstName = customer.FirstName,
-					LastName = customer.LastName,
-					DateOfBirth = customer.DateOfBirth,
-					NumberOfOrders = customer.NumberOfOrders,
+					CustomerViewItemFirstName = customer.FirstName,
+					CustomerViewItemLastName = customer.LastName,
+					CustomerViewItemDateOfBirth = customer.DateOfBirth,
+					CustomerViewItemNumberOfOrders = customer.NumberOfOrders,
 				};
 
 				customers.Add(customerViewItem);

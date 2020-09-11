@@ -4,16 +4,11 @@ namespace MapperPerformanceCore.Objects.test2
 {
 	public class MapTo
 	{
-		public int Id { get; set; }
-
-		public bool BooleanTo { get; set; }
-
-		public DateTimeOffset DateTimeOffsetTo { get; set; }
-
-		public int IntegerTo { get; set; }
-
-		public long LongTo { get; set; }
-
-		public string StringTo { get; set; }
+		public int MapToId { get; set; }
+		public bool MapToBooleanTo { get; set; }
+		public DateTimeOffset MapToDateTimeOffsetTo { get; set; }
+		public int MapToIntegerTo { get; set; }
+		public long MapToLongTo { get; set; }
+		public string MapToStringTo { get; set; }
 	}
 }
