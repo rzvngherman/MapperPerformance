@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using AutoMapperLibrary;
+using AutoMapperLibraryCore;
 using MapperPerformanceCore.Objects;
 
 namespace MapperPerformanceCore
@@ -108,14 +109,7 @@ namespace MapperPerformanceCore
 			var customers = new List<CustomerViewItem>();
 			foreach (Customer customer in _customers)
 			{
-				CustomerViewItem customerViewItem = new CustomerViewItem()
-				{
-					CustomerViewItemFirstName = customer.FirstName,
-					CustomerViewItemLastName = customer.LastName,
-					CustomerViewItemDateOfBirth = customer.DateOfBirth,
-					CustomerViewItemNumberOfOrders = customer.NumberOfOrders,
-				};
-
+				CustomerViewItem customerViewItem = HelperMapper.GetFrom(customer);
 				customers.Add(customerViewItem);
 			}
 		}

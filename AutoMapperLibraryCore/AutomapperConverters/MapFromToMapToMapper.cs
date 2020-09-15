@@ -30,14 +30,7 @@ namespace AutoMapperLibraryCore.AutomapperConverters
 				throw new ArgumentNullException(nameof(source));
 			}
 
-			var result = new CustomerViewItem
-			{
-				CustomerViewItemFirstName = source.FirstName,
-				CustomerViewItemLastName = source.LastName,
-				CustomerViewItemDateOfBirth = source.DateOfBirth,
-				CustomerViewItemNumberOfOrders = source.NumberOfOrders,
-			};
-
+			var result = HelperMapper.GetFrom(source);
 			return result;
 		}
 	}

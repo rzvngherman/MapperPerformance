@@ -12,5 +12,6 @@ namespace MapperPerformanceCore.Objects
 		public string CustomerViewItemLastName { get; set; }
 		public DateTime CustomerViewItemDateOfBirth { get; set; }
 		public int CustomerViewItemNumberOfOrders { get; set; }
+		public long MapToLong { get; set; }
 	}
 }

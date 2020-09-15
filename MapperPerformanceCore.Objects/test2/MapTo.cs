@@ -10,5 +10,6 @@ namespace MapperPerformanceCore.Objects.test2
 		public int MapToIntegerTo { get; set; }
 		public long MapToLongTo { get; set; }
 		public string MapToStringTo { get; set; }
+		public long MaptToLong2 { get; set; }
 	}
 }
