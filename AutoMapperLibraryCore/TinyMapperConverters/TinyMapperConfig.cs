@@ -1,31 +1,53 @@
-﻿using MapperPerformanceCore.Objects.test2;
+﻿using MapperPerformanceCore.Objects;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Globalization;
 
 namespace AutoMapperLibraryCore.TinyMapperConverters
 {
-	public class TinyMapperConfig : MapperPerformanceCore.Objects.ICustomMapper
+	public sealed class SourceClassConverterList : TypeConverter
 	{
-		private string _mapperName;
-
-		public TinyMapperConfig()
+		public SourceClassConverterList()
 		{
-			// CreateMap
-			Nelibur.ObjectMapper.TinyMapper.Bind<MapFrom, MapTo>();
-			Nelibur.ObjectMapper.TinyMapper.Bind<List<MapFrom>, List<MapTo>>();
-			Nelibur.ObjectMapper.TinyMapper.Bind<MapperPerformanceCore.Objects.Customer, MapperPerformanceCore.Objects.CustomerViewItem>();
-			Nelibur.ObjectMapper.TinyMapper.Bind<List<MapperPerformanceCore.Objects.Customer>, List<MapperPerformanceCore.Objects.CustomerViewItem>>();
-
-			_mapperName = "TinyMapper";
+			TypeDescriptor.AddAttributes(typeof(SourceClass), new TypeConverterAttribute(typeof(SourceClassConverter)));
 		}
 
-		public string MapperName => _mapperName;
-
-		public T2 Map<T1, T2>(T1 customers)
-			where T2 : class
+		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
 		{
-			var result = Nelibur.ObjectMapper.TinyMapper.Map<T2>(customers);
+			return destinationType == typeof(List<DestinationClass>);
+		}
+
+		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+		{
+			var concreteValue = (List<SourceClass>)value;
+			var results = new List<DestinationClass>();
+
+			Nelibur.ObjectMapper.TinyMapper.Bind<SourceClass, DestinationClass>();
+			foreach (var val in concreteValue)
+			{
+				var result = Nelibur.ObjectMapper.TinyMapper.Map<DestinationClass>(val);
+				results.Add(result);
+			}
+			return results;
+		}
+	}
+
+	public sealed class SourceClassConverter : TypeConverter
+	{
+		public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
+		{
+			return destinationType == typeof(DestinationClass);
+		}
+
+		public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+		{
+			var concreteValue = (SourceClass)value;
+			var result = new DestinationClass
+			{
+				DId = concreteValue.SId,
+				CalculatedValue = concreteValue.SId * concreteValue.SId
+			};
 			return result;
 		}
 	}

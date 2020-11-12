@@ -3,7 +3,6 @@ using AutoMapperLibrary;
 using AutoMapperLibraryCore;
 using Boxed.Mapping;
 using MapperPerformanceCore.Objects;
-using MapperPerformanceCore.Objects.test2;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,8 +21,7 @@ namespace MapperPerformanceCore
 	/// </summary>
 	class Program
 	{
-		private List<Customer> _customers = new List<Customer>();
-		private int _nrOfRows = 9000000;
+		private readonly int _nrOfRows = 9000000;
 		private ITestHelper _h;
 
 		private void DoMain(string[] args)
@@ -34,14 +32,7 @@ namespace MapperPerformanceCore
 			Console.WriteLine("Number of records " + _nrOfRows);
 			Console.WriteLine("");
 
-			_h = new Test1Helper();
-			Test1();
-
-			//Console.WriteLine("");
-			//Test2();
-
-			Console.WriteLine("");
-			_h = new Test3Helper();
+			_h = new Test4Helper();
 			Test1();
 
 			// TODO https://rehansaeed.com/a-simple-and-fast-object-mapper/
@@ -49,7 +40,6 @@ namespace MapperPerformanceCore
 
 			Console.WriteLine("------- END.");
 			Console.ReadLine();
-
 		}
 
 		private void Test1()
@@ -60,18 +50,6 @@ namespace MapperPerformanceCore
 			_h.DoTest(_nrOfRows);
 
 			DisplayResult(_h.Times);			
-		}
-
-		private void Test2()
-		{
-			//Setup
-			var h = new Test2Helper();
-			h.PopulateData(_nrOfRows);
-
-			Console.WriteLine("'MapFrom' -> 'MapTo'");
-			h.DoTest(_nrOfRows);
-
-			DisplayResult(h._times);
 		}
 
 		private void DisplayResult(List<KeyValuePair<string, long>> times)
