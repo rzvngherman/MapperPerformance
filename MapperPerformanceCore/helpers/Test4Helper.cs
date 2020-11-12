@@ -26,13 +26,13 @@ namespace MapperPerformanceCore
 			_mapFrom = new List<SourceClass>();
 			Times = new List<KeyValuePair<string, long>>();
 
-
 			Console.WriteLine("'SourceClass':");
 			GetAllProperties(typeof(SourceClass), "   ");
-
 			Console.WriteLine("");
+
 			Console.WriteLine("'DestinationClass':");
 			GetAllProperties(typeof(DestinationClass), "   ");
+			Console.WriteLine("");
 		}
 
 		private void GetAllProperties(Type type, string separator)
@@ -80,6 +80,10 @@ namespace MapperPerformanceCore
 			//use tinymapper
 			_customMapper = new CustomTinyMapper();
 			DoTheCalculationsForMapper(x);
+
+			//use AgileMapper
+			//use Mapster
+			//use Boxed.Mapping
 
 			DoTheCalculationsForManualMapper(x);
 		}
