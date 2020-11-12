@@ -6,12 +6,22 @@ namespace MapperPerformanceCore.Objects
 {
 	public class SourceClass
 	{
-		public int SId { get; set; }
+		public int SourceClassId { get; set; }
+		public string LastName { get; set; }
+		public string FirstName { get; set; }
+		public List<SourceChild> Children { get; set; }
 	}
 
-	public class DestinationClass
+	public class SourceChild
 	{
-		public int DId { get; set; }
-		public long CalculatedValue { get; set; }
+		public int SourceChildId { get; set; }
+		public List<SourceNephew> SourceNephews { get; set; }
+	}
+
+	public class SourceNephew
+	{
+		public int Id { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }
 	}
 }

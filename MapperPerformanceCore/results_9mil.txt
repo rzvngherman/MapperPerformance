@@ -86,3 +86,37 @@ AgileMapper 249; MapsterMapper 619; Manual Map 1099; BoxedMapper 1308; TinyMappe
 'MapFrom' -> 'MapTo'
 MapsterMapper 611; AgileMapper 739; TinyMapper 1421; Manual Map 1582; AutoMapper 3714; BoxedMapper 3937;
 ------- END.
+
+
+
+
+
+
+
+
+
+---- MapToLong = source.NumberOfOrders * source.NumberOfOrders
+Date: 2020-09-15 16:11:04       ----------------------------------------------------------------------------------------------------------------
+------- BEGIN
+Number of records 9000000
+
+'Customer' -> 'CustomerViewItem'
+AgileMapper 225; MapsterMapper 1038; TinyMapper 1068; BoxedMapper 1483; Manual Map 1538; AutoMapper 3352;
+
+'MapFrom' -> 'MapTo'
+AgileMapper 814; TinyMapper 1358; MapsterMapper 1578; Manual Map 1812; BoxedMapper 3020; AutoMapper 3719;
+------- END.
+
+
+
+
+
+Date: 2020-09-29 09:07:14       
+----------------------------------------------------------------------------------------------------------------
+------- BEGIN
+Number of records 9000000
+
+
+'MapFrom' -> 'MapTo'
+AutoMapper 827; TinyMapper 901; Manual Map 974;
+------- END.

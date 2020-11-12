@@ -21,7 +21,7 @@ namespace MapperPerformanceCore
 	/// </summary>
 	class Program
 	{
-		private readonly int _nrOfRows = 9000000;
+		private readonly int _nrOfRows = 9000000; //;
 		private ITestHelper _h;
 
 		private void DoMain(string[] args)
@@ -45,7 +45,7 @@ namespace MapperPerformanceCore
 		private void Test1()
 		{
 			//Setup
-			_h.PopulateCustomers(_nrOfRows);
+			_h.PopulateTestData(_nrOfRows);
 			
 			_h.DoTest(_nrOfRows);
 

@@ -4,6 +4,8 @@ using MapperPerformanceCore.Objects;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace MapperPerformanceCore
@@ -16,12 +18,58 @@ namespace MapperPerformanceCore
 		public List<KeyValuePair<string, long>> Times { get; set; }
 		public List<SourceClass> Source { get => _mapFrom; set => throw new NotImplementedException(); }
 
+		List<DestinationClass> _manualList = new List<DestinationClass>();
+		List<DestinationClass> _mapperList = new List<DestinationClass>();
 
 		public Test4Helper()
 		{
 			_mapFrom = new List<SourceClass>();
 			Times = new List<KeyValuePair<string, long>>();
-			Console.WriteLine("'SourceClass' -> 'DestinationClass'");
+
+
+			Console.WriteLine("'SourceClass':");
+			GetAllProperties(typeof(SourceClass), "   ");
+
+			Console.WriteLine("");
+			Console.WriteLine("'DestinationClass':");
+			GetAllProperties(typeof(DestinationClass), "   ");
+		}
+
+		private void GetAllProperties(Type type, string separator)
+		//private void GetAllProperties(object obj, string separator)
+		{
+			//var type = obj.GetType();
+			var propertyInfos = type.GetProperties();
+			// write property names
+			foreach (PropertyInfo propertyInfo in propertyInfos)
+			{
+				//object propValue = propertyInfo.GetValue(obj, null);
+				var propType = propertyInfo.PropertyType;
+				if (propType.IsGenericType)
+				{
+					if (propType.GetGenericTypeDefinition() == typeof(List<>))
+					{
+						Console.WriteLine(separator + propertyInfo.Name +" (List) :");
+						var t3 = propType.GetGenericArguments().First();
+						GetAllProperties(t3, separator + separator);
+
+
+						// SourceChild
+						//Console.WriteLine(separator + propertyInfo.Name);
+						//GetAllProperties(propType, "-");
+
+						//var l = (List<>)propValue;
+						//foreach (object o in )
+						//{
+						//	GetAllProperties(l[0], "-");
+						//}
+					}
+				}
+				else
+				{
+					Console.WriteLine(separator + propertyInfo.Name + " (" + propertyInfo.PropertyType.Name + ")");
+				}
+			}
 		}
 
 		public void DoTest(int x)
@@ -36,15 +84,16 @@ namespace MapperPerformanceCore
 			DoTheCalculationsForManualMapper(x);
 		}
 
-		public void PopulateCustomers(int count)
+		public void PopulateTestData(int count)
 		{
 			var random = new Random();
-			var results = new List<SourceClass>();
 			for (int x = 1; x < count + 1; x++)
 			{
 				var customer = GetCustomerFromDB(x, random);
 				_mapFrom.Add(customer);
 			}
+
+			ValidateData(_mapFrom);
 		}
 
 		private SourceClass GetCustomerFromDB(int i, Random random)
@@ -57,37 +106,100 @@ namespace MapperPerformanceCore
 		{
 			var time = TimeMethod(RunMapper);
 			Times.Add(new KeyValuePair<string, long>(_customMapper.MapperName, time));
+
+			ValidateData(_mapperList);
 		}
 
 		private void DoTheCalculationsForManualMapper(int x)
 		{
 			var time = TimeMethod(RunManual);
 			Times.Add(new KeyValuePair<string, long>("Manual Map", time));
+			ValidateData(_manualList);
 		}
 
 		private void RunManual()
 		{
-			var customers = new List<DestinationClass>();
+			_manualList = new List<DestinationClass>();
 			foreach (var source in _mapFrom)
 			{
 				var result = HelperMapper.GetFrom(source);
-				customers.Add(result);
+				_manualList.Add(result);
 			}
 		}
 
 		private void RunMapper()
 		{
-			var customers = _customMapper.Map<List<SourceClass>, List<DestinationClass>>(_mapFrom);
+			_mapperList = _customMapper.Map<List<SourceClass>, List<DestinationClass>>(_mapFrom);
+		}
 
-			//to be sure that data is filled !
-			if (customers[1].DId != 2)
+		private void ValidateData(List<DestinationClass> destination)
+		{
+			if (destination[1].DestinationClassId != 2)
 			{
 				throw new Exception("value not filled");
 			}
 
-			if (customers[1].CalculatedValue != 4)
+			if (destination[1].CalculatedValue != 4)
 			{
 				throw new Exception("value not filled");
+			}
+
+			if (destination[0].Children == null || destination[0].Children.Count == 0)
+			{
+				throw new Exception("value not filled");
+			}
+
+			if (destination[0].Children[0].DestinationNephews == null || destination[0].Children[0].DestinationNephews.Count == 0)
+			{
+				throw new Exception("DestinationClass.children.DestinationNephews not present");
+			}
+
+			if (string.IsNullOrEmpty(destination[0].Children[0].DestinationNephews[0].Name))
+			{
+				throw new Exception("SourceClass.children.DestinationNephews.name not present");
+			}
+		}
+
+		private void ValidateData(List<SourceClass> sourceData)
+		{
+			if (sourceData[1].SourceClassId != 2)
+			{
+				throw new Exception("SourceClass.SourceClassId value not filled");
+			}
+
+			if (string.IsNullOrEmpty(sourceData[0].FirstName))
+			{
+				throw new Exception("SourceClass.FirstName value not filled");
+			}
+
+			if (string.IsNullOrEmpty(sourceData[0].LastName))
+			{
+				throw new Exception("SourceClass.LastName value not filled");
+			}
+
+			if (sourceData[0].Children == null || sourceData[0].Children.Count == 0)
+			{
+				throw new Exception("SourceClass.children not present");
+			}
+
+			if (sourceData[0].Children[0].SourceChildId == 0)
+			{
+				throw new Exception("SourceClass.children.SourceChildId not present");
+			}
+
+			if (sourceData[0].Children[0].SourceNephews == null || sourceData[0].Children[0].SourceNephews.Count == 0)
+			{
+				throw new Exception("SourceClass.children.SourceNephews not present");
+			}
+
+			if (string.IsNullOrEmpty(sourceData[0].Children[0].SourceNephews[0].FirstName))
+			{
+				throw new Exception("SourceClass.children.SourceNephews.FirstName not present");
+			}
+
+			if (string.IsNullOrEmpty(sourceData[0].Children[0].SourceNephews[0].LastName))
+			{
+				throw new Exception("SourceClass.children.SourceNephews.LastName not present");
 			}
 		}
 
