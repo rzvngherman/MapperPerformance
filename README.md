@@ -16,9 +16,9 @@ Testing 5 different mappers performances:
    - Children (List) :
       - SourceChildId (Int32)
       - SourceNephews (List) :
-            - Id (Int32)
-            - FirstName (String)
-            - LastName (String)
+            1) Id (Int32)
+            2) FirstName (String)
+            3) LastName (String)
 
 - 'DestinationClass':
    - DestinationClassId (Int32)
@@ -27,8 +27,8 @@ Testing 5 different mappers performances:
    - Children (List) :
       - DestinationChildId (Int32)
       - DestinationNephews (List) :
-            - Id (Int32)
-            - Name (String)
+            1) Id (Int32)
+            2) Name (String)
 			
 # Number of rows records:
 9 000 000
