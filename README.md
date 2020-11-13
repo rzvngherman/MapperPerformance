@@ -13,12 +13,12 @@ Testing 5 different mappers performances:
    - SourceClassId (Int32)
    - LastName (String)
    - FirstName (String)
-   - Children (List) :
+   - Children (List)
       - SourceChildId (Int32)
       - SourceNephews (List)
-            1) Id (Int32)
-            2) FirstName (String)
-            3) LastName (String)
+            - Id (Int32)
+            - FirstName (String)
+            - LastName (String)
 
 - 'DestinationClass':
    - DestinationClassId (Int32)
