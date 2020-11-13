@@ -15,7 +15,7 @@ Testing 5 different mappers performances:
    - FirstName (String)
    - Children (List) :
       - SourceChildId (Int32)
-      - SourceNephews (List) :
+      - SourceNephews (List)
             1) Id (Int32)
             2) FirstName (String)
             3) LastName (String)
@@ -26,7 +26,7 @@ Testing 5 different mappers performances:
    - Name (String)
    - Children (List) :
       - DestinationChildId (Int32)
-      - DestinationNephews (List) :
+      - DestinationNephews (List)
             1) Id (Int32)
             2) Name (String)
 			
