@@ -1,4 +1,35 @@
-﻿Date: 2020-11-13 17:17:18       ----------------------------------------------------------------------------------------------------------------
+﻿------- BEGIN
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
+
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
+
+
+Number of records 9000000
+
+Results: (miliseconds)
+TinyMapper 19986; BoxedMapper 23370; AutoMapper 24370; MapsterMapper 25419; Manual Map 27840; AgileMapper 40712;
+
+------- END.
+
+
+Date: 2020-11-13 17:17:18       ----------------------------------------------------------------------------------------------------------------
 ------- BEGIN
 Number of records 9000000
 
