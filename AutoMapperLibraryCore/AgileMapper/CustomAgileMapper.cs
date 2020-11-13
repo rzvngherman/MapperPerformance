@@ -1,28 +1,24 @@
-﻿using AutoMapperLibraryCore.Mapster;
+﻿using AgileObjects.AgileMapper;
+using AutoMapperLibraryCore.AgileMapperConverters;
 using MapperPerformanceCore.Objects;
-using Mapster;
 
 namespace AutoMapperLibrary
 {
-	public class CustomMapsterMapper : ICustomMapper
+	public class CustomAgileMapper : ICustomMapper
 	{
 		private string _mapperName;
-		private TypeAdapterConfig _config;
-
-		public CustomMapsterMapper()
+		public CustomAgileMapper()
 		{
-			_mapperName = "MapsterMapper";
+			_mapperName = "AgileMapper";
 
-			_config = new TypeAdapterConfig();
-			new MapsterConfig().Register(_config);
+			Mapper.WhenMapping.UseConfigurations.From<AgileConfiguration>();
 		}
-
 		public string MapperName => _mapperName;
 
 		public DestinationClass Map<SourceClass, DestinationClass>(SourceClass customers)
 			where DestinationClass : class
 		{
-			var result = customers.Adapt<DestinationClass>(_config);
+			var result = AgileObjects.AgileMapper.Mapper.Map(customers).ToANew<DestinationClass>();
 			return result;
 		}
 

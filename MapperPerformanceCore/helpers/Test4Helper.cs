@@ -34,44 +34,7 @@ namespace MapperPerformanceCore
 			GetAllProperties(typeof(DestinationClass), "   ");
 			Console.WriteLine("");
 		}
-
-		private void GetAllProperties(Type type, string separator)
-		//private void GetAllProperties(object obj, string separator)
-		{
-			//var type = obj.GetType();
-			var propertyInfos = type.GetProperties();
-			// write property names
-			foreach (PropertyInfo propertyInfo in propertyInfos)
-			{
-				//object propValue = propertyInfo.GetValue(obj, null);
-				var propType = propertyInfo.PropertyType;
-				if (propType.IsGenericType)
-				{
-					if (propType.GetGenericTypeDefinition() == typeof(List<>))
-					{
-						Console.WriteLine(separator + propertyInfo.Name +" (List) :");
-						var t3 = propType.GetGenericArguments().First();
-						GetAllProperties(t3, separator + separator);
-
-
-						// SourceChild
-						//Console.WriteLine(separator + propertyInfo.Name);
-						//GetAllProperties(propType, "-");
-
-						//var l = (List<>)propValue;
-						//foreach (object o in )
-						//{
-						//	GetAllProperties(l[0], "-");
-						//}
-					}
-				}
-				else
-				{
-					Console.WriteLine(separator + propertyInfo.Name + " (" + propertyInfo.PropertyType.Name + ")");
-				}
-			}
-		}
-
+		
 		public void DoTest(int x)
 		{
 			_customMapper = new CustomAutoMapper();
@@ -81,9 +44,15 @@ namespace MapperPerformanceCore
 			_customMapper = new CustomTinyMapper();
 			DoTheCalculationsForMapper(x);
 
-			//use AgileMapper
-			//use Mapster
-			//use Boxed.Mapping
+			//use agilemapper
+			_customMapper = new CustomAgileMapper();
+			DoTheCalculationsForMapper(x);
+
+			//TODO - use mapster
+			_customMapper = new CustomMapsterMapper();
+			DoTheCalculationsForMapper(x);
+
+			//TODO - use Boxed.Mapping
 
 			DoTheCalculationsForManualMapper(x);
 		}
@@ -214,6 +183,28 @@ namespace MapperPerformanceCore
 			methodToTime();
 			stopwatch.Stop();
 			return stopwatch.ElapsedMilliseconds;
+		}
+
+		private void GetAllProperties(Type type, string separator)
+		{
+			var propertyInfos = type.GetProperties();
+			foreach (PropertyInfo propertyInfo in propertyInfos)
+			{
+				var propType = propertyInfo.PropertyType;
+				if (propType.IsGenericType)
+				{
+					if (propType.GetGenericTypeDefinition() == typeof(List<>))
+					{
+						Console.WriteLine(separator + propertyInfo.Name + " (List) :");
+						var t3 = propType.GetGenericArguments().First();
+						GetAllProperties(t3, separator + separator);
+					}
+				}
+				else
+				{
+					Console.WriteLine(separator + propertyInfo.Name + " (" + propertyInfo.PropertyType.Name + ")");
+				}
+			}
 		}
 	}
 }

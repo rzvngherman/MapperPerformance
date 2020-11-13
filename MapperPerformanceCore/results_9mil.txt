@@ -25,3 +25,35 @@ Number of records 9000000
 
 AutoMapper 23499; TinyMapper 41049; Manual Map 50912;
 ------- END.
+
+
+
+
+
+Date: 2020-11-12 18:17:04       ----------------------------------------------------------------------------------------------------------------
+------- BEGIN
+Number of records 9000000
+
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
+
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
+
+AutoMapper 23662; Manual Map 25930; AgileMapper 27656; TinyMapper 41628;
+------- END.

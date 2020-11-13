@@ -21,7 +21,7 @@ namespace AutoMapperLibraryCore.AutomapperConverters
 			CreateMap<SourceNephew, DestinationNephew>()
 						.ForMember(y => y.Id,						y => y.MapFrom(z => z.Id))
 						.ForMember(y => y.Name,						y => y.MapFrom(z => HelperMapper.XXX3(z.FirstName, z.LastName)));
-						;
+
 			//CreateMap<MapFrom, MapTo>()
 			//			.ForMember(y => y.MapToBooleanTo,			y => y.MapFrom(z => z.BooleanFrom))
 			//			.ForMember(y => y.MapToDateTimeOffsetTo,	y => y.MapFrom(z => z.DateTimeOffsetFrom))
