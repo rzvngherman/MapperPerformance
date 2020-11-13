@@ -37,6 +37,7 @@ namespace MapperPerformanceCore
 		
 		public void DoTest(int x)
 		{
+			//use automapper
 			_customMapper = new CustomAutoMapper();
 			DoTheCalculationsForMapper(x);
 
@@ -48,12 +49,14 @@ namespace MapperPerformanceCore
 			_customMapper = new CustomAgileMapper();
 			DoTheCalculationsForMapper(x);
 
-			//TODO - use mapster
+			//use mapster
 			_customMapper = new CustomMapsterMapper();
 			DoTheCalculationsForMapper(x);
 
 			//TODO - use Boxed.Mapping
 
+
+			//use manual mapping
 			DoTheCalculationsForManualMapper(x);
 		}
 
