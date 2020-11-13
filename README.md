@@ -31,7 +31,7 @@ Testing 5 different mappers performances:
             Name (String)
 			
 # Number of test records:
-9000000
+9 000 000
 
 # Time to run:
 5 minutes
