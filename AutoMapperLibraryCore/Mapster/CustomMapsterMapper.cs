@@ -25,10 +25,5 @@ namespace AutoMapperLibrary
 			var result = customers.Adapt<List<DestinationClass>>(_config);
 			return result;
 		}
-
-		public T2 MapGeneric<T1, T2>(T1 customers) where T2 : class
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

@@ -21,10 +21,5 @@ namespace AutoMapperLibrary
 			var results = AgileObjects.AgileMapper.Mapper.Map(customers).ToANew<List<DestinationClass>>();
 			return results;
 		}
-
-		public T2 MapGeneric<T1, T2>(T1 customers) where T2 : class
-		{
-			throw new System.NotImplementedException();
-		}
 	}
 }

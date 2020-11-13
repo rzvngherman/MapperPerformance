@@ -23,11 +23,6 @@ namespace AutoMapperLibraryCore
 			_mapperName = "TinyMapper";
 		}
 
-		public T2 MapGeneric<T1, T2>(T1 customers) where T2 : class
-		{
-			throw new NotImplementedException();
-		}
-
 		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
 			var result = Nelibur.ObjectMapper.TinyMapper.Map<List<DestinationClass>>(customers);

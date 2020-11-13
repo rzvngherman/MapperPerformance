@@ -18,13 +18,7 @@ namespace AutoMapperLibrary
 
 		public string MapperName { get; set; }
 		public AutoMapper.IMapper _mapper;
-
-		public T2 MapGeneric<T1, T2>(T1 customers)
-			where T2 : class
-		{
-			throw new System.NotImplementedException();
-		}
-
+		
 		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
 			var result = _mapper.Map<List<DestinationClass>>(customers);
