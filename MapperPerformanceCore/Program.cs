@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 
 namespace MapperPerformanceCore
 {
@@ -21,7 +22,7 @@ namespace MapperPerformanceCore
 	/// </summary>
 	class Program
 	{
-		private readonly int _nrOfRows = 9000000; //9000000;
+		private readonly int _nrOfRows = 10; //9000000;
 		private ITestHelper _h;
 
 		private void DoMain(string[] args)
@@ -29,27 +30,24 @@ namespace MapperPerformanceCore
 			Console.WriteLine("Date: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "	----------------------------------------------------------------------------------------------------------------");
 			Console.WriteLine("------- BEGIN");
 
+			DisplayClassFieldListNames();
+			Console.WriteLine("");
+
 			Console.WriteLine("Number of records " + _nrOfRows);
 			Console.WriteLine("");
 
-			_h = new Test4Helper();
-			Test1();
+			_h = new Test4Helper(_nrOfRows);
+			_h.DoTest();
+
+			Console.WriteLine("Results: (miliseconds)");
+			DisplayResultTimes(_h.Times);
+			Console.WriteLine("");
 
 			Console.WriteLine("------- END.");
 			Console.ReadLine();
 		}
 
-		private void Test1()
-		{
-			//Setup
-			_h.PopulateTestData(_nrOfRows);
-			
-			_h.DoTest(_nrOfRows);
-
-			DisplayResult(_h.Times);			
-		}
-
-		private void DisplayResult(List<KeyValuePair<string, long>> times)
+		private void DisplayResultTimes(List<KeyValuePair<string, long>> times)
 		{
 			var orderList = times.OrderBy(t => t.Value);
 			foreach (var item in orderList)
@@ -57,6 +55,39 @@ namespace MapperPerformanceCore
 				Console.Write(item.Key + " " + item.Value + "; ");
 			}
 			Console.WriteLine("");
+		}
+
+		private void DisplayClassFieldListNames()
+		{
+			Console.WriteLine("'SourceClass':");
+			GetAllProperties(typeof(SourceClass), "   ");
+			Console.WriteLine("");
+
+			Console.WriteLine("'DestinationClass':");
+			GetAllProperties(typeof(DestinationClass), "   ");
+			Console.WriteLine("");
+		}
+
+		private void GetAllProperties(Type type, string separator)
+		{
+			var propertyInfos = type.GetProperties();
+			foreach (PropertyInfo propertyInfo in propertyInfos)
+			{
+				var propType = propertyInfo.PropertyType;
+				if (propType.IsGenericType)
+				{
+					if (propType.GetGenericTypeDefinition() == typeof(List<>))
+					{
+						Console.WriteLine(separator + propertyInfo.Name + " (List) :");
+						var t3 = propType.GetGenericArguments().First();
+						GetAllProperties(t3, separator + separator);
+					}
+				}
+				else
+				{
+					Console.WriteLine(separator + propertyInfo.Name + " (" + propertyInfo.PropertyType.Name + ")");
+				}
+			}
 		}
 
 		static void Main(string[] args)

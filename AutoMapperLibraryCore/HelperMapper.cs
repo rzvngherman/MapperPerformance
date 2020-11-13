@@ -7,30 +7,6 @@ namespace AutoMapperLibraryCore
 {
 	public class HelperMapper
 	{
-		public static SourceClass GenerateTestData2(int i, Random random)
-		{
-			var mf = new SourceClass()
-			{
-				SourceClassId = i,
-				FirstName = random.Next().ToString(CultureInfo.InvariantCulture),
-				LastName = random.Next().ToString(CultureInfo.InvariantCulture),
-				Children = new List<SourceChild>
-				{
-					new SourceChild{SourceChildId = 1,SourceNephews = XXX4(i)},
-					new SourceChild{ SourceChildId = 2, SourceNephews = XXX4(i)}
-				}
-			};
-
-			return mf;
-		}
-
-		private static List<SourceNephew> XXX4(int i)
-		{
-			var sourceNephews = new List<SourceNephew>();
-			sourceNephews.Add(new SourceNephew { Id = i, FirstName = "aaa1", LastName = "bbb1" });
-			return sourceNephews;
-		}
-
 		public static DestinationClass GetFrom(SourceClass source)
 		{
 			var result = new DestinationClass

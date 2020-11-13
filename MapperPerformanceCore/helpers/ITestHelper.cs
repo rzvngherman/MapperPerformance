@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MapperPerformanceCore.Objects;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,8 +7,9 @@ namespace MapperPerformanceCore
 {
 	public interface ITestHelper
 	{
-		void PopulateTestData(int count);
-		void DoTest(int x);
+		void DoTest();
 		List<KeyValuePair<string, long>> Times { get; set; }
+
+		void ValidateData();
 	}
 }
