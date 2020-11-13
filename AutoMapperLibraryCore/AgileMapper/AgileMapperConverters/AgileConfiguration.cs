@@ -10,44 +10,30 @@ namespace AutoMapperLibraryCore.AgileMapperConverters
 	{
 		protected override void Configure()
 		{
-			// Configure default Mapper ProductDto -> Product mapping:
 			// TSource, TTarget
 			WhenMapping
 				.From<SourceClass>()
 				.To<DestinationClass>()
-					//.Map((dto, p) => dto.SourceClassId)
-					//.To(p => p.DestinationClassId)
-				
-				//.And
-				//.Ignore(p => p.Price, p => p.CatNum)
-
-				//.And
-					.Map((dto, p) => HelperMapper.XXX2(dto.SourceClassId))
+					.Map((dto, p) => HelperMapper.TestSetCalculatedValue(dto.SourceClassId))
 					.To(p => p.CalculatedValue)
-
 				.And
-					.Map((dto, p) => HelperMapper.XXX3(dto.FirstName, dto.LastName))
-					.To(p => p.Name)
-				;
+					.Map((dto, p) => HelperMapper.TestSetName(dto.FirstName, dto.LastName))
+					.To(p => p.Name);
 
 			WhenMapping
 				.From<SourceChild>()
 				.To<DestinationChild>()
-					.Map((dto, p) => HelperMapper.XXX(dto.SourceChildId))
+					.Map((dto, p) => HelperMapper.TestSetDestinationChild(dto.SourceChildId))
 					.To(p => p.DestinationChildId)
 				.And
 					.Map((dto, p) => dto.SourceNephews)
-					.To(p => p.DestinationNephews)
-				;
+					.To(p => p.DestinationNephews);
 
 			WhenMapping
 				.From<SourceNephew>()
 				.To<DestinationNephew>()
-					.Map((dto, p) => HelperMapper.XXX3(dto.FirstName, dto.LastName))
-					.To(p => p.Name)
-					;
-			// Cache all Product -> ProductDto mapping plans:
-			//GetPlansFor<DestinationClass>().To<SourceClass>();
+					.Map((dto, p) => HelperMapper.TestSetName(dto.FirstName, dto.LastName))
+					.To(p => p.Name);
 		}
 	}
 }

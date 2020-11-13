@@ -16,7 +16,6 @@ namespace AutoMapperLibraryCore
 		public CustomTinyMapper()
 		{
 			// (TSource, TTarget) -> List<SourceClass> TO List<DestinationClass>
-			// https://github.com/TinyMapper/TinyMapper/wiki/Custom-mapping
 			TypeDescriptor.AddAttributes(typeof(List<SourceClass>), new TypeConverterAttribute(typeof(SourceClassConverterList)));
 			Nelibur.ObjectMapper.TinyMapper.Bind<List<SourceClass>, List<DestinationClass>>();
 

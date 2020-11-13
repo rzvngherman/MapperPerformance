@@ -14,16 +14,16 @@ namespace AutoMapperLibraryCore.Mapster
 
 			config.ForType<SourceClass, DestinationClass>()
 				.Map(y => y.DestinationClassId,				z => z.SourceClassId)
-				.Map(y => y.CalculatedValue,				z => HelperMapper.XXX2(z.SourceClassId))
-				.Map(y => y.Name,							z => HelperMapper.XXX3(z.FirstName, z.LastName));
+				.Map(y => y.CalculatedValue,				z => HelperMapper.TestSetCalculatedValue(z.SourceClassId))
+				.Map(y => y.Name,							z => HelperMapper.TestSetName(z.FirstName, z.LastName));
 
 			config.ForType<SourceChild, DestinationChild>()
-				.Map(y => y.DestinationChildId,				z => HelperMapper.XXX(z.SourceChildId))
+				.Map(y => y.DestinationChildId,				z => HelperMapper.TestSetDestinationChild(z.SourceChildId))
 				.Map(y => y.DestinationNephews,				z => z.SourceNephews);
 
 			config.ForType<SourceNephew, DestinationNephew>()
 				.Map(y => y.Id,								z => z.Id)
-				.Map(y => y.Name,							z => HelperMapper.XXX3(z.FirstName, z.LastName));
+				.Map(y => y.Name,							z => HelperMapper.TestSetName(z.FirstName, z.LastName));
 		}
 	}
 }

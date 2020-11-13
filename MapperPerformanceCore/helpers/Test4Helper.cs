@@ -47,7 +47,7 @@ namespace MapperPerformanceCore
 			_customMapper = new CustomMapsterMapper();
 			DoTheCalculationsForMapper();
 
-			//TODO - use Boxed.Mapping
+			//use Boxed.Mapping
 			_customMapper = new CustomBoxedMapping();
 			DoTheCalculationsForMapper();
 

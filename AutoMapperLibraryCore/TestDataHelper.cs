@@ -40,21 +40,12 @@ namespace AutoMapperLibraryCore
 				LastName = random.Next().ToString(CultureInfo.InvariantCulture),
 				Children = new List<SourceChild>
 				{
-					new SourceChild{SourceChildId = 1,SourceNephews = XXX4(i)},
-					new SourceChild{ SourceChildId = 2, SourceNephews = XXX4(i)}
+					new SourceChild{SourceChildId = 1,SourceNephews = HelperMapper.TestSetSourceNephews(i)},
+					new SourceChild{ SourceChildId = 2, SourceNephews = HelperMapper.TestSetSourceNephews(i)}
 				}
 			};
 
 			return mf;
-		}
-
-		private List<SourceNephew> XXX4(int i)
-		{
-			var sourceNephews = new List<SourceNephew>
-			{
-				new SourceNephew { Id = i, FirstName = "aaa1", LastName = "bbb1" }
-			};
-			return sourceNephews;
-		}
+		}		
 	}
 }

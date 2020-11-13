@@ -20,8 +20,8 @@ namespace AutoMapperLibraryCore
 		public void Map(SourceClass source, DestinationClass destination)
 		{
 			destination.DestinationClassId = source.SourceClassId;
-			destination.CalculatedValue = Convert.ToInt64(HelperMapper.XXX2(source.SourceClassId));
-			destination.Name = HelperMapper.XXX3(source.FirstName, source.LastName).ToString();
+			destination.CalculatedValue = Convert.ToInt64(HelperMapper.TestSetCalculatedValue(source.SourceClassId));
+			destination.Name = HelperMapper.TestSetName(source.FirstName, source.LastName).ToString();
 
 			destination.Children = _childMapper.MapList(source.Children);
 		}
@@ -35,7 +35,7 @@ namespace AutoMapperLibraryCore
 
 		public void Map(SourceChild source, DestinationChild destination)
 		{
-			destination.DestinationChildId = Convert.ToInt32(HelperMapper.XXX(source.SourceChildId));
+			destination.DestinationChildId = Convert.ToInt32(HelperMapper.TestSetDestinationChild(source.SourceChildId));
 			destination.DestinationNephews = _nephewMapper.MapList(source.SourceNephews);
 		}
 	}
@@ -45,7 +45,7 @@ namespace AutoMapperLibraryCore
 		public void Map(SourceNephew source, DestinationNephew destination)
 		{
 			destination.Id = source.Id;
-			destination.Name = HelperMapper.XXX3(source.FirstName, source.LastName).ToString();
+			destination.Name = HelperMapper.TestSetName(source.FirstName, source.LastName).ToString();
 		}
 	}
 }

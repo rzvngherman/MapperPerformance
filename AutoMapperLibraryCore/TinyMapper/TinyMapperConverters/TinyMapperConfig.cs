@@ -46,14 +46,14 @@ namespace AutoMapperLibraryCore.TinyMapperConverters
 			var result = new DestinationClass
 			{
 				DestinationClassId = concreteValue.SourceClassId,
-				CalculatedValue = Convert.ToInt64(HelperMapper.XXX2(concreteValue.SourceClassId)),
-				Name = HelperMapper.XXX3(concreteValue.FirstName, concreteValue.LastName).ToString()
+				CalculatedValue = Convert.ToInt64(HelperMapper.TestSetCalculatedValue(concreteValue.SourceClassId)),
+				Name = HelperMapper.TestSetName(concreteValue.FirstName, concreteValue.LastName).ToString()
 			};
 
 			var destChildren = new List<DestinationChild>();
 			concreteValue.Children.ForEach(c => destChildren.Add(new DestinationChild
 			{
-				DestinationChildId = Convert.ToInt32(HelperMapper.XXX(c.SourceChildId)),
+				DestinationChildId = Convert.ToInt32(HelperMapper.TestSetDestinationChild(c.SourceChildId)),
 				DestinationNephews = HelperMapper.AddNephews(c.SourceNephews)
 			}));
 

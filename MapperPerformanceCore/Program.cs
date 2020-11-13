@@ -22,7 +22,7 @@ namespace MapperPerformanceCore
 	/// </summary>
 	class Program
 	{
-		private readonly int _nrOfRows = 10; //9000000;
+		private readonly int _nrOfRows = 9000000;
 		private ITestHelper _h;
 
 		private void DoMain(string[] args)
