@@ -8,7 +8,7 @@ Testing 5 different mappers performances:
 - 'MapsterMapper' (https://github.com/MapsterMapper/Mapster)
 - 'Boxed.Mapping' (https://www.nuget.org/packages/Boxed.Mapping)
 
-#Structure of classes used:
+# Structure of classes used:
 'SourceClass':
    SourceClassId (Int32)
    LastName (String)
@@ -30,13 +30,13 @@ Testing 5 different mappers performances:
             Id (Int32)
             Name (String)
 			
-#Number of test records:
+# Number of test records:
 9000000
 
-#Time to run:
+# Time to run:
 5 minutes
 
-#Results(miliseconds)
+# Results(miliseconds)
 test 1:
 TinyMapper 19986; 
 BoxedMapper 23370; 
