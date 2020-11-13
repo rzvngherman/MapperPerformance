@@ -1,6 +1,7 @@
 ﻿using AgileObjects.AgileMapper;
 using AutoMapperLibraryCore.AgileMapperConverters;
 using MapperPerformanceCore.Objects;
+using System.Collections.Generic;
 
 namespace AutoMapperLibrary
 {
@@ -15,11 +16,10 @@ namespace AutoMapperLibrary
 		}
 		public string MapperName => _mapperName;
 
-		public DestinationClass Map<SourceClass, DestinationClass>(SourceClass customers)
-			where DestinationClass : class
+		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
-			var result = AgileObjects.AgileMapper.Mapper.Map(customers).ToANew<DestinationClass>();
-			return result;
+			var results = AgileObjects.AgileMapper.Mapper.Map(customers).ToANew<List<DestinationClass>>();
+			return results;
 		}
 
 		public T2 MapGeneric<T1, T2>(T1 customers) where T2 : class

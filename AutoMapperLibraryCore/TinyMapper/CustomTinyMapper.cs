@@ -28,9 +28,9 @@ namespace AutoMapperLibraryCore
 			throw new NotImplementedException();
 		}
 
-		public DestinationClass Map<SourceClass, DestinationClass>(SourceClass customers) where DestinationClass : class
+		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
-			var result = Nelibur.ObjectMapper.TinyMapper.Map<DestinationClass>(customers);
+			var result = Nelibur.ObjectMapper.TinyMapper.Map<List<DestinationClass>>(customers);
 			return result;
 		}
 	}

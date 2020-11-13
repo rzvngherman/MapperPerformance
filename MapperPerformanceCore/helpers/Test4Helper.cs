@@ -54,7 +54,8 @@ namespace MapperPerformanceCore
 			DoTheCalculationsForMapper(x);
 
 			//TODO - use Boxed.Mapping
-
+			_customMapper = new CustomBoxedMapping();
+			DoTheCalculationsForMapper(x);
 
 			//use manual mapping
 			DoTheCalculationsForManualMapper(x);
@@ -105,7 +106,7 @@ namespace MapperPerformanceCore
 
 		private void RunMapper()
 		{
-			_mapperList = _customMapper.Map<List<SourceClass>, List<DestinationClass>>(_mapFrom);
+			_mapperList = _customMapper.Map(_mapFrom);
 		}
 
 		private void ValidateData(List<DestinationClass> destination)

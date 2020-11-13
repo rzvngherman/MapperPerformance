@@ -1,13 +1,14 @@
 ﻿using AutoMapperLibraryCore.Mapster;
 using MapperPerformanceCore.Objects;
 using Mapster;
+using System.Collections.Generic;
 
 namespace AutoMapperLibrary
 {
 	public class CustomMapsterMapper : ICustomMapper
 	{
-		private string _mapperName;
-		private TypeAdapterConfig _config;
+		private readonly string _mapperName;
+		private readonly TypeAdapterConfig _config;
 
 		public CustomMapsterMapper()
 		{
@@ -19,10 +20,9 @@ namespace AutoMapperLibrary
 
 		public string MapperName => _mapperName;
 
-		public DestinationClass Map<SourceClass, DestinationClass>(SourceClass customers)
-			where DestinationClass : class
+		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
-			var result = customers.Adapt<DestinationClass>(_config);
+			var result = customers.Adapt<List<DestinationClass>>(_config);
 			return result;
 		}
 

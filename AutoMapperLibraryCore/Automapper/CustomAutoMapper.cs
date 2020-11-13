@@ -1,4 +1,5 @@
 ﻿using MapperPerformanceCore.Objects;
+using System.Collections.Generic;
 
 namespace AutoMapperLibrary
 {
@@ -24,9 +25,9 @@ namespace AutoMapperLibrary
 			throw new System.NotImplementedException();
 		}
 
-		public DestinationClass Map<SourceClass, DestinationClass>(SourceClass customers) where DestinationClass : class
+		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
-			var result = _mapper.Map<DestinationClass>(customers);
+			var result = _mapper.Map<List<DestinationClass>>(customers);
 			return result;
 		}
 	}

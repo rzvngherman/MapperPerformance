@@ -35,9 +35,6 @@ namespace MapperPerformanceCore
 			_h = new Test4Helper();
 			Test1();
 
-			// TODO https://rehansaeed.com/a-simple-and-fast-object-mapper/
-			// TODO https://cezarypiatek.github.io/post/why-i-dont-use-automapper/
-
 			Console.WriteLine("------- END.");
 			Console.ReadLine();
 		}
