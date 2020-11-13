@@ -1,4 +1,5 @@
 ﻿using MapperPerformanceCore.Objects;
+using System.Collections.Generic;
 
 namespace AutoMapperLibrary
 {
@@ -17,11 +18,10 @@ namespace AutoMapperLibrary
 
 		public string MapperName { get; set; }
 		public AutoMapper.IMapper _mapper;
-
-		public T2 Map<T1, T2>(T1 customers)
-			where T2 : class
+		
+		public List<DestinationClass> Map(List<SourceClass> customers)
 		{
-			var result = _mapper.Map<T2>(customers);
+			var result = _mapper.Map<List<DestinationClass>>(customers);
 			return result;
 		}
 	}

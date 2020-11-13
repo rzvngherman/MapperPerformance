@@ -1,88 +1,164 @@
-﻿Date: 2020-09-11 16:34:40	----------------------------------------------------------------------------------------------------------------
+﻿------- BEGIN
+#Number of test records:
+9000000
+
+#Time to run:
+5 minutes
+
+#Results(miliseconds)
+test 1:
+TinyMapper 19986; 
+BoxedMapper 23370; 
+AutoMapper 24370; 
+MapsterMapper 25419; 
+Manual Map 27840; 
+AgileMapper 40712;
+
+test 2:
+BoxedMapper 12463; 
+TinyMapper 20523; 
+AutoMapper 24330; 
+MapsterMapper 25259; 
+Manual Map 34673; 
+AgileMapper 44835;
+
+test3:
+MapsterMapper 14137; 
+TinyMapper 20041; 
+BoxedMapper 22729; 
+AutoMapper 24168; 
+Manual Map 26819; 
+AgileMapper 50117;
+
+test4:
+BoxedMapper 11888; 
+TinyMapper 20996; 
+AutoMapper 23963; 
+MapsterMapper 24873; 
+Manual Map 36523; AgileMapper 40457;
+--------END
+
+
+
+
+------- BEGIN
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
+
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
+
+
+Number of records 9000000
+
+Results: (miliseconds)
+TinyMapper 19986; BoxedMapper 23370; AutoMapper 24370; MapsterMapper 25419; Manual Map 27840; AgileMapper 40712;
+
+------- END.
+
+
+Date: 2020-11-13 17:17:18       ----------------------------------------------------------------------------------------------------------------
 ------- BEGIN
 Number of records 9000000
 
-'Customer' -> 'CustomerViewItem'
-AgileMapper 606; MapsterMapper 611; Manual Map 1032; BoxedMapper 1325; TinyMapper 1479; AutoMapper 2883;
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
 
-'MapFrom' -> 'MapTo'
-AgileMapper 740; MapsterMapper 898; Manual Map 1310; TinyMapper 1466; BoxedMapper 3182; AutoMapper 3725;
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
+
+BoxedMapper 22312; AutoMapper 24502; MapsterMapper 31590; AgileMapper 40797; Manual Map 62123; TinyMapper 79627;
 ------- END.
 
 
 
-Date: 2020-09-11 16:35:33	----------------------------------------------------------------------------------------------------------------
+
+Date: 2020-11-12 17:39:38       ----------------------------------------------------------------------------------------------------------------
 ------- BEGIN
 Number of records 9000000
 
-'Customer' -> 'CustomerViewItem'
-AgileMapper 603; MapsterMapper 638; Manual Map 1045; BoxedMapper 1316; TinyMapper 1447; AutoMapper 2884;
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
 
-'MapFrom' -> 'MapTo'
-AgileMapper 762; MapsterMapper 864; Manual Map 1349; TinyMapper 1463; BoxedMapper 3170; AutoMapper 3995;
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
+
+AutoMapper 23499; TinyMapper 41049; Manual Map 50912;
 ------- END.
 
 
 
-Date: 2020-09-11 16:36:43	----------------------------------------------------------------------------------------------------------------
+
+
+Date: 2020-11-12 18:17:04       ----------------------------------------------------------------------------------------------------------------
 ------- BEGIN
 Number of records 9000000
 
-'Customer' -> 'CustomerViewItem'
-MapsterMapper 616; AgileMapper 627; Manual Map 1072; BoxedMapper 1298; TinyMapper 1499; AutoMapper 2895;
+'SourceClass':
+   SourceClassId (Int32)
+   LastName (String)
+   FirstName (String)
+   Children (List) :
+      SourceChildId (Int32)
+      SourceNephews (List) :
+            Id (Int32)
+            FirstName (String)
+            LastName (String)
 
-'MapFrom' -> 'MapTo'
-AgileMapper 735; MapsterMapper 909; Manual Map 1315; TinyMapper 1450; BoxedMapper 3194; AutoMapper 3810;
-------- END.
+'DestinationClass':
+   DestinationClassId (Int32)
+   CalculatedValue (Int64)
+   Name (String)
+   Children (List) :
+      DestinationChildId (Int32)
+      DestinationNephews (List) :
+            Id (Int32)
+            Name (String)
 
-
-
-Date: 2020-09-11 16:37:41	----------------------------------------------------------------------------------------------------------------
-------- BEGIN
-Number of records 9000000
-
-'Customer' -> 'CustomerViewItem'
-AgileMapper 250; MapsterMapper 616; Manual Map 1046; BoxedMapper 1360; TinyMapper 1695; AutoMapper 2891;
-
-'MapFrom' -> 'MapTo'
-AgileMapper 725; MapsterMapper 1046; Manual Map 1359; TinyMapper 1437; BoxedMapper 3085; AutoMapper 3491;
-------- END.
-
-
-
-Date: 2020-09-11 16:38:49       ----------------------------------------------------------------------------------------------------------------
-------- BEGIN
-Number of records 9000000
-
-'Customer' -> 'CustomerViewItem'
-AgileMapper 768; MapsterMapper 794; TinyMapper 813; Manual Map 1040; BoxedMapper 1332; AutoMapper 3097;
-
-'MapFrom' -> 'MapTo'
-MapsterMapper 620; AgileMapper 735; TinyMapper 1413; Manual Map 1458; AutoMapper 3974; BoxedMapper 4035;
-------- END.
-
-
-
-Date: 2020-09-11 16:39:40       ----------------------------------------------------------------------------------------------------------------
-------- BEGIN
-Number of records 9000000
-
-'Customer' -> 'CustomerViewItem'
-AgileMapper 240; MapsterMapper 615; Manual Map 1106; BoxedMapper 1343; TinyMapper 1692; AutoMapper 2868;
-
-'MapFrom' -> 'MapTo'
-AgileMapper 722; TinyMapper 872; MapsterMapper 1717; Manual Map 1924; BoxedMapper 2523; AutoMapper 4353;
-------- END.
-
-
-
-Date: 2020-09-11 16:41:47       ----------------------------------------------------------------------------------------------------------------
-------- BEGIN
-Number of records 9000000
-
-'Customer' -> 'CustomerViewItem'
-AgileMapper 249; MapsterMapper 619; Manual Map 1099; BoxedMapper 1308; TinyMapper 1690; AutoMapper 2869;
-
-'MapFrom' -> 'MapTo'
-MapsterMapper 611; AgileMapper 739; TinyMapper 1421; Manual Map 1582; AutoMapper 3714; BoxedMapper 3937;
+AutoMapper 23662; Manual Map 25930; AgileMapper 27656; TinyMapper 41628;
 ------- END.

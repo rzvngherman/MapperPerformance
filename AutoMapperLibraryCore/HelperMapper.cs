@@ -1,53 +1,69 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using MapperPerformanceCore.Objects;
-using MapperPerformanceCore.Objects.test2;
 
 namespace AutoMapperLibraryCore
 {
 	public class HelperMapper
 	{
-		public static MapTo GetFrom(MapFrom source)
+		public static DestinationClass GetFrom(SourceClass source)
 		{
-			var result = new MapTo
+			var result = new DestinationClass
 			{
-				MapToId = source.Id,
-				MapToBooleanTo = source.BooleanFrom,
-				MapToDateTimeOffsetTo = source.DateTimeOffsetFrom,
-				MapToIntegerTo = source.IntegerFrom,
-				MapToLongTo = source.LongFrom,
-				MapToStringTo = source.StringFrom,
-				MaptToLong2 = source.Id * source.IntegerFrom
+				DestinationClassId = source.SourceClassId,
+				CalculatedValue = source.SourceClassId * source.SourceClassId,
+				Children = BuildChildren(source.Children)
 			};
 			return result;
 		}
 
-		public static CustomerViewItem GetFrom(Customer source)
+		private static List<DestinationChild> BuildChildren(List<SourceChild> children)
 		{
-			var result = new CustomerViewItem
+			var results = new List<DestinationChild>();
+			children.ForEach(c => results.Add(new DestinationChild
 			{
-				CustomerViewItemFirstName = source.FirstName,
-				CustomerViewItemLastName = source.LastName,
-				CustomerViewItemDateOfBirth = source.DateOfBirth,
-				CustomerViewItemNumberOfOrders = source.NumberOfOrders,
-				MapToLong = source.NumberOfOrders * source.NumberOfOrders
-			};
+				DestinationChildId = Convert.ToInt32(TestSetDestinationChild(c.SourceChildId)),
+				DestinationNephews = AddNephews(c.SourceNephews)
+			}));
 
-			return result;
+			return results;
 		}
 
-		public static MapFrom GenerateTestData(int i, Random random)
+		public static List<DestinationNephew> AddNephews(List<SourceNephew> sourceNephews)
 		{
-			var mf = new MapFrom()
+			var results = new List<DestinationNephew>();
+			sourceNephews.ForEach(n => results.Add(new DestinationNephew
 			{
-				Id = i,
-				BooleanFrom = random.NextDouble() > 0.5D,
-				DateTimeOffsetFrom = DateTimeOffset.UtcNow,
-				IntegerFrom = random.Next(),
-				LongFrom = random.Next(),
-				StringFrom = random.Next().ToString(CultureInfo.InvariantCulture),
-			};
-			return mf;
+				Id = n.Id,
+				Name = TestSetName(n.FirstName, n.LastName).ToString()
+			}));
+
+			return results;
 		}
+
+		internal static List<SourceNephew> TestSetSourceNephews(int i)
+		{
+			var sourceNephews = new List<SourceNephew>
+			{
+				new SourceNephew { Id = i, FirstName = "aaa1", LastName = "bbb1" }
+			};
+			return sourceNephews;
+		}
+
+		internal static object TestSetDestinationChild(int sourceChildId)
+		{
+			return sourceChildId + 10;
+		}
+
+		internal static object TestSetCalculatedValue(int sourceClassId)
+		{
+			return sourceClassId * sourceClassId;
+		}
+
+		internal static object TestSetName(string firstName, string lastName)
+		{
+			return firstName + " " + lastName;
+		}		
 	}
 }
